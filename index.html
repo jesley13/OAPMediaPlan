@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OAP Media Plan Converter</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="panel" aria-labelledby="page-title">
+        <header class="brand">
+          <div class="logo" aria-label="OAP logo"><img class="oap-logo" src="./public/images/oap_logo.png" alt=""></div>
+          <div class="top-box">
+            <p class="eyebrow">Excel to PPT</p>
+            <h1 id="page-title">Media Plan Converter</h1>
+          </div>
+        </header>
+
+        <form id="uploadForm" class="upload" enctype="multipart/form-data">
+          <label id="dropZone" class="drop-zone" for="excelInput">
+            <span class="drop-icon" aria-hidden="true">+</span>
+            <span class="drop-title">Upload Excel file</span>
+            <span id="fileName" class="drop-copy">Choose or drop an .xlsx file here</span>
+            <input id="excelInput" name="excel" type="file" accept=".xlsx,.xls" required>
+          </label>
+
+          <button id="submitButton" type="submit">Generate PPT</button>
+          <p id="status" class="status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <script src="./vendor/xlsx.full.min.js"></script>
+    <script src="./vendor/jszip.min.js"></script>
+    <script src="./vendor/pptxgen.min.js"></script>
+    <script src="./src/browser-generator.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
