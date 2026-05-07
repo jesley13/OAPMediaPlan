@@ -61,6 +61,30 @@ pres.title  = "OAP Mediatech — Media Plan";
 
 const SW = 13.3;
 const SH = 7.5;
+const PHOTO_X = 4.35;
+const PHOTO_Y = 0.15;
+const PHOTO_W = 8.5;
+const PHOTO_H = 7.2;
+
+pres.defineSlideMaster({
+  title: "MEDIA_PLAN",
+  background: { color: OFF_WHITE },
+  objects: [
+    {
+      placeholder: {
+        text: "",
+        options: {
+          name: "mediaPhoto",
+          type: "image",
+          x: PHOTO_X,
+          y: PHOTO_Y,
+          w: PHOTO_W,
+          h: PHOTO_H,
+        },
+      },
+    },
+  ],
+});
 
 data.forEach((row, idx) => {
   const lat       = row["Lat"]  || 0;
@@ -69,8 +93,7 @@ data.forEach((row, idx) => {
   const streetUrl = getStreetUrl(lat, lng);
   const slideNum  = String(row["Sl.No"] || idx + 1).padStart(2, "0");
 
-  const slide = pres.addSlide();
-  slide.background = { color: OFF_WHITE };
+  const slide = pres.addSlide({ masterName: "MEDIA_PLAN" });
 
   // ── LEFT PANEL (black) ─────────────────────────────────────────────────────
   const leftW = 4.1;
@@ -209,41 +232,14 @@ data.forEach((row, idx) => {
   });
 
   // ── RIGHT PANEL ──────────────────────────────────────────────────────────────
-  const rightX = leftW + 0.25;
-  const rightW = SW - leftW - 0.45;
+  const rightX = PHOTO_X;
+  const rightW = PHOTO_W;
+  const photoH = PHOTO_H;
 
-  // ── PHOTO PLACEHOLDER ────────────────────────────────────────────────────────
-  const photoH = SH - 0.3;
-
-  // Outer frame (subtle orange border)
+  // Visible frame around the real PowerPoint picture placeholder.
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: rightX, y: 0.15, w: rightW, h: photoH,
-    fill: { color: LIGHT_GRAY }, line: { color: ORANGE, width: 1.5 }, shadow: mkShadow()
-  });
-
-  // Inner dashed placeholder area
-  slide.addShape(pres.shapes.RECTANGLE, {
-    x: rightX + 0.25, y: 0.45, w: rightW - 0.5, h: photoH - 0.65,
-    fill: { color: "F0F0F0" }, line: { color: "CCCCCC", width: 1, dashType: "dash" }
-  });
-
-  // Camera icon box
-  slide.addShape(pres.shapes.RECTANGLE, {
-    x: rightX + rightW/2 - 1.2, y: 0.15 + photoH/2 - 0.75, w: 2.4, h: 1.5,
-    fill: { color: "E6E6E6" }, line: { color: ORANGE, width: 1 }
-  });
-
-  slide.addText("📷", {
-    x: rightX + rightW/2 - 0.38, y: 0.15 + photoH/2 - 0.72, w: 0.76, h: 0.62,
-    fontSize: 32, align: "center", valign: "middle", margin: 0
-  });
-  slide.addText("MEDIA PHOTO", {
-    x: rightX + rightW/2 - 1.2, y: 0.15 + photoH/2 - 0.05, w: 2.4, h: 0.3,
-    fontSize: 9, bold: true, color: DARK_GRAY, align: "center", charSpacing: 2, margin: 0
-  });
-  slide.addText("Click placeholder · Insert · Picture", {
-    x: rightX + rightW/2 - 1.4, y: 0.15 + photoH/2 + 0.27, w: 2.8, h: 0.25,
-    fontSize: 7.5, color: MID_GRAY, align: "center", italic: true, margin: 0
+    x: rightX, y: PHOTO_Y, w: rightW, h: photoH,
+    fill: { color: LIGHT_GRAY, transparency: 100 }, line: { color: ORANGE, width: 1.5 }, shadow: mkShadow()
   });
 
   // "PHOTO" badge top-right corner
