@@ -149,7 +149,7 @@ data.forEach((row, idx) => {
   // ── Location ────────────────────────────────────────────────────────────────
   slide.addText("LOCATION", {
     x: 0.2, y: 1.96, w: leftW - 0.3, h: 0.2,
-    fontSize: 7, bold: true, color: ORANGE, charSpacing: 2.5, align: "left", margin: 0
+    fontSize: 8, bold: true, color: ORANGE, charSpacing: 2.5, align: "left", margin: 0
   });
   slide.addText(row["Location"] || "—", {
     x: 0.2, y: 2.16, w: leftW - 0.3, h: 0.65,
@@ -171,15 +171,15 @@ data.forEach((row, idx) => {
 
   infoRows.forEach((cols, r) => {
     const y = gY + r * rowH;
-    slide.addText(cols[0], { x: colX1, y, w: 1.85, h: 0.2, fontSize: 6.5, bold: true, color: labelC, charSpacing: 1.5, margin: 0 });
+    slide.addText(cols[0], { x: colX1, y, w: 1.85, h: 0.2, fontSize: 8, bold: true, color: labelC, charSpacing: 1.5, margin: 0 });
     slide.addText(String(cols[1]), { x: colX1, y: y + 0.2, w: 1.85, h: 0.3, fontSize: 11, bold: true, color: valueC, margin: 0 });
-    slide.addText(cols[2], { x: colX2, y, w: 1.85, h: 0.2, fontSize: 6.5, bold: true, color: labelC, charSpacing: 1.5, margin: 0 });
+    slide.addText(cols[2], { x: colX2, y, w: 1.85, h: 0.2, fontSize: 8, bold: true, color: labelC, charSpacing: 1.5, margin: 0 });
     slide.addText(String(cols[3]), { x: colX2, y: y + 0.2, w: 1.85, h: 0.3, fontSize: 11, bold: true, color: valueC, margin: 0 });
   });
 
   slide.addText("TOTAL COST", {
     x: 0.2, y: 4.72, w: 1.85, h: 0.2,
-    fontSize: 6.5, bold: true, color: labelC, charSpacing: 1.5, margin: 0
+    fontSize: 8, bold: true, color: labelC, charSpacing: 1.5, margin: 0
   });
   slide.addText(formatCurrency(row["Total cost"]), {
     x: 0.2, y: 4.92, w: 1.85, h: 0.3,
